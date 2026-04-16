@@ -19,7 +19,11 @@
         "format": "prettier --write ."
     },
     "dependencies": {
-        "express": "^5.2.1"
+        "dotenv": "^17.4.2",
+        "express": "^5.2.1",
+        "mysql2": "^3.22.0",
+        "reflect-metadata": "^0.2.2",
+        "typeorm": "^0.3.28"
     },
     "engines": {
         "node": ">=18"

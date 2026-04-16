@@ -1,15 +1,24 @@
-class Product {
-    id;
-    name;
-    description;
-    price;
+const { EntitySchema } = require('typeorm');
 
-    constructor(id, name, description, price) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-    }
-}
-
-module.exports = { Product };
+module.exports = new EntitySchema({
+    name: 'Product',
+    tableName: 'products',
+    columns: {
+        id: {
+            primary: true,
+            type: 'int',
+            generated: true,
+        },
+        name: {
+            type: 'varchar',
+        },
+        description: {
+            type: 'text',
+        },
+        price: {
+            type: 'decimal',
+            precision: 10,
+            scale: 2,
+        },
+    },
+});

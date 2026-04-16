@@ -44,7 +44,7 @@ Abaixo está o roadmap de implementação. Cada etapa terá uma especificação 
 </details>
 
 <details>
-    <summary>⬜ 3. Banco de dados</summary>
+    <summary>✅ 3. Banco de dados</summary>
 
 Nesta etapa será feita a integração do **Product Service** com um banco de dados relacional.
 
@@ -56,7 +56,7 @@ Nesta etapa será feita a integração do **Product Service** com um banco de da
     - Cada microserviço terá seu próprio banco isolado (ex.: `auth_db`, `product_db`, `order_db`)
     - Isso garante autonomia e independência entre os serviços
 - Criação da tabela `products` no banco específico do serviço
-- Testes iniciais de conexão e persistência de dados
+- **Validação manual inicial** da conexão e persistência de dados
 
 </details>
 

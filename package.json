@@ -1,0 +1,26 @@
+{
+  "name": "ecommerce-demo-product-service",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/pablopereira27/ecommerce-demo-product-service#readme",
+  "bugs": {
+    "url": "https://github.com/pablopereira27/ecommerce-demo-product-service/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablopereira27/ecommerce-demo-product-service.git"
+  },
+  "license": "ISC",
+  "author": "Pablo Pereira",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

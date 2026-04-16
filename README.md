@@ -27,7 +27,7 @@ No futuro, será lançada uma versão utilizando **NestJS** e outros frameworks.
 Abaixo está o roadmap de implementação. Cada etapa terá uma especificação detalhada.
 
 <details>
-    <summary>1. Estrutura inicial</summary>
+    <summary>✅ 1. Estrutura inicial</summary>
 
 - Configuração do projeto com `npm init`
 - Adição do Express 5
@@ -36,7 +36,7 @@ Abaixo está o roadmap de implementação. Cada etapa terá uma especificação 
 </details>
 
 <details>
-    <summary>2. CRUD de Produtos</summary>
+    <summary>✅ 2. CRUD de Produtos</summary>
 
 - Definição de rotas REST (GET, POST, PUT, DELETE)
 - Separação em `routes/`, `controllers/` e `models/`
@@ -44,7 +44,7 @@ Abaixo está o roadmap de implementação. Cada etapa terá uma especificação 
 </details>
 
 <details>
-    <summary>3. Banco de dados</summary>
+    <summary>⬜ 3. Banco de dados</summary>
 
 Nesta etapa será feita a integração do **Product Service** com um banco de dados relacional.
 
@@ -61,7 +61,7 @@ Nesta etapa será feita a integração do **Product Service** com um banco de da
 </details>
 
 <details>
-    <summary>4. Dockerização</summary>
+    <summary>⬜ 4. Dockerização</summary>
 
 - Criação de `Dockerfile`
 - Configuração de `docker-compose` para rodar localmente
@@ -69,11 +69,12 @@ Nesta etapa será feita a integração do **Product Service** com um banco de da
 </details>
 
 <details>
-  <summary>5. Observabilidade</summary>
+  <summary>⬜ 5. Observabilidade</summary>
 
 - Logs estruturados
 - Testes unitários básicos
-      </details>
+
+</details>
 
 ---
 

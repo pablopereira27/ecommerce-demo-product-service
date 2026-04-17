@@ -5,9 +5,9 @@
 Este repositório faz parte de um projeto **demo de microserviços** para um e-commerce simples.  
 A arquitetura é composta por 3 serviços independentes:
 
-- [Auth Service](https://github.com/seuuser/ecommerce-demo-auth-service)
-- [Product Service](https://github.com/seuuser/ecommerce-demo-product-service) ← este repositório
-- [Order Service](https://github.com/seuuser/ecommerce-demo-order-service)
+- [Auth Service](https://github.com/pablopereira27/ecommerce-demo-auth-service)
+- [Product Service](https://github.com/pablopereira27/ecommerce-demo-product-service) ← este repositório
+- [Order Service](https://github.com/pablopereira27/ecommerce-demo-order-service)
 
 O objetivo é ser **simples e leve**, mostrando boas práticas de microserviços.  
 No futuro, será lançada uma versão utilizando **NestJS** e outros frameworks.
@@ -61,18 +61,48 @@ Nesta etapa será feita a integração do **Product Service** com um banco de da
 </details>
 
 <details>
-    <summary>⬜ 4. Dockerização</summary>
+    <summary>✅ 4. DTOs (Data Transfer Objects)</summary>
 
-- Criação de `Dockerfile`
-- Configuração de `docker-compose` para rodar localmente
+Nesta etapa serão adicionados DTOs para separar os contratos de entrada e saída da API das entidades do banco de dados.
+
+- CreateProductDto e UpdateProductDto para normalização e validação
+- ProductDto para saída de um único produto
+- ProductListDto para saída de listas paginadas
+- Preparação para futura documentação com Swagger/OpenAPI
 
 </details>
 
 <details>
-  <summary>⬜ 5. Observabilidade</summary>
+    <summary>⬜ 5. Documentação com Swagger</summary>
 
-- Logs estruturados
-- Testes unitários básicos
+Será integrada a documentação da API utilizando Swagger/OpenAPI.
+
+- Exposição clara dos contratos de entrada e saída
+- Inclusão dos DTOs na documentação
+- Interface interativa para testes dos endpoints
+- Facilitar consumo da API por outros desenvolvedores
+
+</details>
+
+<details>
+    <summary>⬜ 6. Observabilidade</summary>
+
+Serão implementados mecanismos de observabilidade para aumentar a confiabilidade do serviço.
+
+- Logs estruturados para monitoramento e depuração
+- Testes unitários e de integração
+- Garantia de qualidade antes da dockerização
+
+</details>
+
+<details>
+    <summary>⬜ 7. Dockerização</summary>
+
+Será feita a dockerização do serviço para facilitar a execução em ambientes isolados.
+
+- Criação de `Dockerfile`
+- Configuração de `docker-compose` para rodar localmente
+- Preparação para futura orquestração em ambientes maiores
 
 </details>
 
@@ -82,13 +112,19 @@ Nesta etapa será feita a integração do **Product Service** com um banco de da
 
 ```
 src/
-    routes/
-    controllers/
-    models/
-    tests/
+├── controllers/
+├── dtos/
+├── models/
+├── validation/
+├── tests/
+├── data-source.js
+├── index.js
+└── routes.js
+.env
 Dockerfile
 package.json
 README.md
+
 ```
 
 ---

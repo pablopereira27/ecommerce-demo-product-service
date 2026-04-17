@@ -20,5 +20,13 @@ module.exports = new EntitySchema({
             precision: 10,
             scale: 2,
         },
+        createdAt: {
+            type: 'timestamp',
+            createDate: true,
+        },
+        updatedAt: {
+            type: 'timestamp',
+            updateDate: true,
+        },
     },
 });

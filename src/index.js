@@ -26,12 +26,12 @@ app.get('/', (req, res) => {
 // inicializa o banco antes de subir o servidor
 AppDataSource.initialize()
     .then(() => {
-        console.log('Data Source has been initialized!');
+        console.log('O banco de dados foi inicializado!');
 
         app.listen(port, () => {
-            console.log(`Example app listening on port ${port}`);
+            console.log(`Servidor rodando na porta ${port}.`);
         });
     })
     .catch((err) => {
-        console.error('Error during Data Source initialization:', err);
+        console.error('Erro durante a inicialização do banco de dados:', err);
     });

@@ -1,95 +1,105 @@
 const { AppDataSource } = require('../data-source');
 const { MoreThanOrEqual, LessThanOrEqual } = require('typeorm');
+
 const Product = require('../models/product');
+const CreateProductDto = require('../dtos/createProductDto');
+const UpdateProductDto = require('../dtos/updateProductDto');
+const ProductListDto = require('../dtos/productListDto');
+const ProductDto = require('../dtos/productDto');
 
 async function getAllProducts(req, res) {
-    const { name, minPrice, maxPrice } = req.query;
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
+    try {
+        const { name, minPrice, maxPrice } = req.query;
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
 
-    const productRepo = AppDataSource.getRepository('Product');
+        const productRepo = AppDataSource.getRepository(Product);
 
-    const [products, total] = await productRepo.findAndCount({
-        where: {
-            ...(name && { name }),
-            ...(minPrice && { price: MoreThanOrEqual(minPrice) }),
-            ...(maxPrice && { price: LessThanOrEqual(maxPrice) }),
-        },
-        skip: (page - 1) * limit,
-        take: limit,
-    });
+        const [products, total] = await productRepo.findAndCount({
+            where: {
+                ...(name && { name }),
+                ...(minPrice && { price: MoreThanOrEqual(minPrice) }),
+                ...(maxPrice && { price: LessThanOrEqual(maxPrice) }),
+            },
+            skip: (page - 1) * limit,
+            take: limit,
+        });
 
-    res.status(200).json({
-        data: products,
-        total,
-        page,
-        totalPages: Math.ceil(total / limit),
-    });
+        const dto = new ProductListDto(products, { total, page, limit });
+        res.status(200).json(dto);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 
 async function getProductById(req, res) {
-    const id = parseInt(req.params.id);
-    const productRepo = AppDataSource.getRepository(Product);
+    try {
+        const id = parseInt(req.params.id);
+        const productRepo = AppDataSource.getRepository(Product);
 
-    const product = await productRepo.findOneBy({ id });
-    if (!product) {
-        return res.status(404).json({ message: 'Product not found' });
+        const product = await productRepo.findOneBy({ id });
+        if (!product) {
+            return res.status(404).json({ message: 'Produto não encontrado' });
+        }
+
+        const dto = new ProductDto(product);
+        res.json(dto);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
-
-    res.json(product);
 }
 
 async function createProduct(req, res) {
-    const { name, description, price } = req.body || {};
-    const required = { name, description, price };
-
-    const missing = Object.entries(required)
-        .filter(([_, value]) => !value)
-        .map(([key]) => key);
-
-    if (missing.length > 0) {
-        return res.status(400).json({
-            message: `Campos obrigatórios faltando: ${missing.join(', ')}`,
-        });
+    try {
+        const dto = new CreateProductDto(req.body);
+        const productRepo = AppDataSource.getRepository(Product);
+        const newProduct = productRepo.create(dto);
+        await productRepo.save(newProduct);
+        res.status(201).json(newProduct);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
-
-    const productRepo = AppDataSource.getRepository(Product);
-    const newProduct = productRepo.create({ name, description, price });
-    await productRepo.save(newProduct);
-
-    res.status(201).json(newProduct);
 }
 
 async function updateProduct(req, res) {
-    const id = parseInt(req.params.id);
-    const productRepo = AppDataSource.getRepository(Product);
-    const product = await productRepo.findOneBy({ id });
+    try {
+        const id = parseInt(req.params.id);
+        const productRepo = AppDataSource.getRepository(Product);
+        const product = await productRepo.findOneBy({ id });
 
-    if (!product)
-        return res.status(404).json({ message: 'Produto não encontrado' });
+        if (!product)
+            return res.status(404).json({ message: 'Produto não encontrado' });
 
-    if (!req.body || Object.keys(req.body).length === 0) {
-        return res
-            .status(400)
-            .json({ message: 'Nenhum campo enviado para atualização.' });
+        if (!req.body || Object.keys(req.body).length === 0) {
+            return res
+                .status(400)
+                .json({ message: 'Nenhum campo enviado para atualização.' });
+        }
+
+        const dto = new UpdateProductDto(req.body);
+        productRepo.merge(product, dto);
+        await productRepo.save(product);
+
+        res.status(200).json(product);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
-
-    productRepo.merge(product, req.body);
-    await productRepo.save(product);
-
-    res.status(200).json(product);
 }
 
 async function deleteProduct(req, res) {
-    const id = parseInt(req.params.id);
-    const productRepo = AppDataSource.getRepository(Product);
-    const product = await productRepo.findOneBy({ id });
+    try {
+        const id = parseInt(req.params.id);
+        const productRepo = AppDataSource.getRepository(Product);
+        const product = await productRepo.findOneBy({ id });
 
-    if (!product)
-        return res.status(404).json({ message: 'Produto não encontrado' });
+        if (!product)
+            return res.status(404).json({ message: 'Produto não encontrado' });
 
-    await productRepo.remove(product);
-    res.status(204).send();
+        await productRepo.remove(product);
+        res.status(204).send();
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 
 module.exports = {

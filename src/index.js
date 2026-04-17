@@ -4,6 +4,7 @@ const { AppDataSource } = require('./data-source');
 
 // Core libraries
 const express = require('express');
+const { swaggerUi, swaggerSpec } = require('./swagger/swagger-config');
 
 const routes = require('./routes');
 
@@ -14,6 +15,7 @@ const port = process.env.APP_PORT;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/products', routes);
 
 // Health check

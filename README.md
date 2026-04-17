@@ -73,7 +73,7 @@ Nesta etapa serão adicionados DTOs para separar os contratos de entrada e saíd
 </details>
 
 <details>
-    <summary>⬜ 5. Documentação com Swagger</summary>
+    <summary>✅ 5. Documentação com Swagger</summary>
 
 Será integrada a documentação da API utilizando Swagger/OpenAPI.
 

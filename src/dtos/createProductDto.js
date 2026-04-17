@@ -3,6 +3,24 @@ const {
     createProductSchema,
 } = require('../validation/productSchema');
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     CreateProductDto:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *         description:
+ *           type: string
+ *         price:
+ *           type: number
+ *       required:
+ *         - name
+ *         - description
+ *         - price
+ */
 class CreateProductDto {
     constructor(data) {
         const normalized = {

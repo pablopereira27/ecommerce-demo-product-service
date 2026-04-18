@@ -4,10 +4,13 @@ const { AppDataSource } = require('./data-source');
 
 // Core libraries
 const express = require('express');
+const pino = require('pino-http');
 
 // Utilitários e Middlewares
 const { swaggerUi, swaggerSpec } = require('./swagger/swagger-config');
+const logger = require('./logger');
 const errorHandler = require('./middlewares/errorHandler');
+const registerProcessHandlers = require('./utils/processHandlers');
 
 // Rotas
 const routes = require('./routes');
@@ -16,6 +19,7 @@ const app = express();
 const port = process.env.APP_PORT || 3000;
 
 // Middlewares Globais
+app.use(pino({ logger }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -33,15 +37,24 @@ app.get('/', (req, res) => {
 // Middleware de erro
 app.use(errorHandler);
 
+// Captura de erros globais fora do ciclo de requisição
+registerProcessHandlers();
+
 // Inicializa o banco antes de subir o servidor
 AppDataSource.initialize()
     .then(() => {
-        console.log('O banco de dados foi inicializado!');
+        logger.info('O banco de dados foi inicializado!');
 
         app.listen(port, () => {
-            console.log(`Servidor rodando na porta ${port}.`);
+            logger.info(
+                `Servidor em pleno funcionamento, rodando na porta ${port}.`
+            );
         });
     })
-    .catch((err) => {
-        console.error('Erro durante a inicialização do banco de dados:', err);
+    .catch((error) => {
+        logger.fatal(
+            { err: error },
+            'Erro fatal: não foi possível inicializar o banco de dados'
+        );
+        process.exit(1);
     });

@@ -3,20 +3,6 @@ const {
     updateProductSchema,
 } = require('../validation/productSchema');
 
-/**
- * @swagger
- * components:
- *   schemas:
- *     UpdateProductDto:
- *       type: object
- *       properties:
- *         name:
- *           type: string
- *         description:
- *           type: string
- *         price:
- *           type: number
- */
 class UpdateProductDto {
     constructor(data) {
         const normalized = {

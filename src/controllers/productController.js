@@ -8,45 +8,6 @@ const ProductListDto = require('../dtos/productListDto');
 const ProductDto = require('../dtos/productDto');
 const ValidationError = require('../errors/ValidationError');
 
-/**
- * @swagger
- * /products:
- *   get:
- *     summary: Lista todos os produtos
- *     parameters:
- *       - in: query
- *         name: name
- *         schema:
- *           type: string
- *         description: Filtrar por nome
- *       - in: query
- *         name: minPrice
- *         schema:
- *           type: number
- *         description: Preço mínimo
- *       - in: query
- *         name: maxPrice
- *         schema:
- *           type: number
- *         description: Preço máximo
- *       - in: query
- *         name: page
- *         schema:
- *           type: integer
- *       - in: query
- *         name: limit
- *         schema:
- *           type: integer
- *     responses:
- *       200:
- *         description: Lista de produtos paginada
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ProductListDto'
- *       500:
- *         description: Erro interno
- */
 async function getAllProducts(req, res) {
     try {
         const { name, minPrice, maxPrice } = req.query;
@@ -72,29 +33,6 @@ async function getAllProducts(req, res) {
     }
 }
 
-/**
- * @swagger
- * /products/{id}:
- *   get:
- *     summary: Busca produto por ID
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *     responses:
- *       200:
- *         description: Produto encontrado
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ProductDto'
- *       404:
- *         description: Produto não encontrado
- *       500:
- *         description: Erro interno
- */
 async function getProductById(req, res) {
     try {
         const id = parseInt(req.params.id);
@@ -112,27 +50,6 @@ async function getProductById(req, res) {
     }
 }
 
-/**
- * @swagger
- * /products:
- *   post:
- *     summary: Cria um novo produto
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/CreateProductDto'
- *     responses:
- *       201:
- *         description: Produto criado com sucesso
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ProductDto'
- *       400:
- *         description: Dados inválidos
- */
 async function createProduct(req, res) {
     try {
         const dto = new CreateProductDto(req.body);
@@ -151,35 +68,6 @@ async function createProduct(req, res) {
     }
 }
 
-/**
- * @swagger
- * /products/{id}:
- *   put:
- *     summary: Atualiza um produto existente
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/UpdateProductDto'
- *     responses:
- *       200:
- *         description: Produto atualizado
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ProductDto'
- *       400:
- *         description: Dados inválidos ou corpo vazio
- *       404:
- *         description: Produto não encontrado
- */
 async function updateProduct(req, res) {
     try {
         const id = parseInt(req.params.id);
@@ -211,25 +99,6 @@ async function updateProduct(req, res) {
     }
 }
 
-/**
- * @swagger
- * /products/{id}:
- *   delete:
- *     summary: Remove um produto
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *     responses:
- *       204:
- *         description: Produto removido com sucesso
- *       404:
- *         description: Produto não encontrado
- *       500:
- *         description: Erro interno
- */
 async function deleteProduct(req, res) {
     try {
         const id = parseInt(req.params.id);

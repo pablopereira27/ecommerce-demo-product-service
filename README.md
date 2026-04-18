@@ -108,6 +108,7 @@ Será feita a dockerização do serviço para facilitar a execução em ambiente
 
 ---
 
+Toda a documentação Swagger/OpenAPI está centralizada em **`src/swagger/docs/`**.
 ## 📂 Estrutura de pastas
 
 ```
@@ -116,6 +117,8 @@ src/
 ├── dtos/
 ├── models/
 ├── validation/
+├── swagger/
+|   └── docs
 ├── tests/
 ├── data-source.js
 ├── index.js

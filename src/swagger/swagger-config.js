@@ -9,8 +9,25 @@ const options = {
             version: '1.0.0',
             description: 'Documentação da API de Produtos',
         },
+        components: {
+            responses: {
+                InternalServerError: {
+                    description: 'Erro interno do servidor',
+                    content: {
+                        'application/json': {
+                            schema: {
+                                type: 'object',
+                                properties: {
+                                    error: { type: 'string' },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
     },
-    apis: ['./src/controllers/*.js', './src/dtos/*.js'],
+    apis: ['./src/swagger/docs/**/*.js'],
 };
 
 const swaggerSpec = swaggerJsDoc(options);

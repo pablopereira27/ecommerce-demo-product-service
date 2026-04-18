@@ -6,6 +6,7 @@ const CreateProductDto = require('../dtos/createProductDto');
 const UpdateProductDto = require('../dtos/updateProductDto');
 const ProductListDto = require('../dtos/productListDto');
 const ProductDto = require('../dtos/productDto');
+const ValidationError = require('../errors/ValidationError');
 
 /**
  * @swagger
@@ -67,7 +68,7 @@ async function getAllProducts(req, res) {
         const dto = new ProductListDto(products, { total, page, limit });
         res.status(200).json(dto);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        next(error);
     }
 }
 
@@ -107,7 +108,7 @@ async function getProductById(req, res) {
         const dto = new ProductDto(product);
         res.json(dto);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        next(error);
     }
 }
 
@@ -140,7 +141,13 @@ async function createProduct(req, res) {
         await productRepo.save(newProduct);
         res.status(201).json(newProduct);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        if (error instanceof ValidationError) {
+            return res
+                .status(400)
+                .json({ error: 'Dados de produto inválidos' });
+        }
+
+        next(error);
     }
 }
 
@@ -194,7 +201,13 @@ async function updateProduct(req, res) {
 
         res.status(200).json(product);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        if (error instanceof ValidationError) {
+            return res
+                .status(400)
+                .json({ error: 'Dados de produto inválidos' });
+        }
+
+        next(error);
     }
 }
 
@@ -229,7 +242,7 @@ async function deleteProduct(req, res) {
         await productRepo.remove(product);
         res.status(204).send();
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        next(error);
     }
 }
 

@@ -89,9 +89,12 @@ Será integrada a documentação da API utilizando Swagger/OpenAPI.
 
 Serão implementados mecanismos de observabilidade para aumentar a confiabilidade do serviço.
 
-- Logs estruturados para monitoramento e depuração
-- Testes unitários e de integração
-- Garantia de qualidade antes da dockerização
+- Integração da biblioteca Pino para geração de logs estruturados em JSON
+- Definição de níveis de severidade (`info`, `warn`, `error`, `fatal`)
+- Configuração de Prometheus para coleta de métricas (requisições, tempo de resposta, uso de recursos)
+- Integração com Loki para armazenamento e consulta de logs
+- Visualização e alertas via Grafana, permitindo monitoramento em tempo real e notificações em caso de falhas
+- Testes unitários e de integração para garantir qualidade antes da dockerização
 
 </details>
 
@@ -100,15 +103,40 @@ Serão implementados mecanismos de observabilidade para aumentar a confiabilidad
 
 Será feita a dockerização do serviço para facilitar a execução em ambientes isolados.
 
-- Criação de `Dockerfile`
-- Configuração de `docker-compose` para rodar localmente
+- Criação de `Dockerfile` para empacotar o serviço
+- Configuração de `docker-compose` para rodar localmente com banco de dados e dependências
 - Preparação para futura orquestração em ambientes maiores
+- Testes de execução em container para validar compatibilidade
+
+</details>
+
+<details>
+    <summary>⬜ 8. Kubernetes</summary>
+
+Será feita a orquestração dos containers em um cluster Kubernetes para garantir escalabilidade e alta disponibilidade.
+
+- Criação de manifestos YAML (`Deployment`, `Service`, `ConfigMap`, `Secret`)
+- Configuração de réplicas para escalabilidade automática
+- Balanceamento de carga entre instâncias do serviço
+- Integração com Prometheus e Grafana para observabilidade em cluster
+- Garantia de resiliência: realocação automática de pods em caso de falha
+- Preparação para ambientes de produção com CI/CD
 
 </details>
 
 ---
 
+## 📚 Documentação da API
+
 Toda a documentação Swagger/OpenAPI está centralizada em **`src/swagger/docs/`**.
+
+- Cada módulo possui seus próprios arquivos de documentação (ex.: `productControllerDocs.js`, `productDtoDocs.js`).
+- O Swagger é configurado para buscar automaticamente todos os arquivos e subpastas (`./src/swagger/docs/**/*.js`).
+- Isso mantém os controllers e DTOs limpos, enquanto a documentação fica organizada em um único lugar.
+
+Para visualizar a documentação interativa, basta rodar o serviço e acessar a url `/api-docs`:  
+No ambiente local: `http://localhost:3000/api-docs`
+
 ## 📂 Estrutura de pastas
 
 ```

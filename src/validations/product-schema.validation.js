@@ -1,4 +1,4 @@
-const ValidationError = require('../errors/ValidationError');
+const ValidationError = require('../errors/validation.error');
 
 const createProductSchema = {
     name: { type: 'string', required: true },

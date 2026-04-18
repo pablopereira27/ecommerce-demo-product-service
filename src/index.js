@@ -9,8 +9,8 @@ const pino = require('pino-http');
 // Utilitários e Middlewares
 const { swaggerUi, swaggerSpec } = require('./swagger/swagger-config');
 const logger = require('./logger');
-const errorHandler = require('./middlewares/errorHandler');
-const registerProcessHandlers = require('./utils/processHandlers');
+const errorHandler = require('./middlewares/error-handler.middleware');
+const registerProcessHandlers = require('./utils/process-handlers');
 
 // Rotas
 const routes = require('./routes');

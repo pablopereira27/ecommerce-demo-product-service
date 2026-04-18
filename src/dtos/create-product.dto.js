@@ -1,7 +1,7 @@
 const {
     validate,
     createProductSchema,
-} = require('../validation/productSchema');
+} = require('../validations/product-schema.validation');
 
 class CreateProductDto {
     constructor(data) {

@@ -137,17 +137,44 @@ Toda a documentação Swagger/OpenAPI está centralizada em **`src/swagger/docs/
 Para visualizar a documentação interativa, basta rodar o serviço e acessar a url `/api-docs`:  
 No ambiente local: `http://localhost:3000/api-docs`
 
-## 📂 Estrutura de pastas
+## 📖 Guia de Nomenclatura e Sufixos
+
+Este projeto adota **kebab-case** para todos os arquivos, com sufixos que indicam claramente o papel de cada módulo.  
+Funções e variáveis internas seguem **camelCase**, enquanto classes (quando houver) usam **PascalCase**.
+
+| Categoria         | Padrão de Nome                    | Exemplo                      | Observação                                         |
+| ----------------- | --------------------------------- | ---------------------------- | -------------------------------------------------- |
+| **Controllers**   | `<nome>.controller.js`            | `product.controller.js`      | Define rotas e lógica de entrada/saída             |
+| **DTOs**          | `<nome>.dto.js`                   | `product.dto.js`             | Objetos de transferência de dados e validações     |
+| **Models**        | `<nome>.entity.js` ou `.model.js` | `product.entity.js`          | Entidades do banco (TypeORM) ou modelos de domínio |
+| **Middlewares**   | `<nome>.js`                       | `error-handler.js`           | O sufixo é opcional                                |
+| **Docs**          | `<nome>.docs.js`                  | `product.docs.js`            | Documentação JSDoc/Swagger                         |
+| **Testes**        | `<nome>.test.js`                  | `product.controller.test.js` | Testes unitários e de integração (Jest)            |
+| **Utils/Helpers** | `<nome>.js`                       | `date-utils.js`              | Funções auxiliares, sem sufixo especial            |
+
+### ✅ Regras gerais
+
+- **Arquivos**: sempre em **kebab-case**.
+- **Testes**: sempre com sufixo `.test.js`.
+- **DTOs, Controllers, Entities, Docs**: sempre com sufixo explícito.
+- **Middlewares**: não precisam de sufixo `.middleware.js`.
+- **Variáveis e funções**: camelCase.
+- **Classes**: PascalCase.
+
+### 📂 Estrutura de pastas
 
 ```
 src/
 ├── controllers/
 ├── dtos/
+├── errors/
+├── middlewares/
 ├── models/
-├── validation/
 ├── swagger/
 |   └── docs
 ├── tests/
+├── utils/
+├── validations/
 ├── data-source.js
 ├── index.js
 └── routes.js

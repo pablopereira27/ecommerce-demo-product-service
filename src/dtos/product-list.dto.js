@@ -1,4 +1,4 @@
-const ProductDto = require('./productDto');
+const ProductDto = require('./product.dto');
 
 class ProductListDto {
     constructor(products, pagination) {

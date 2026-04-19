@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { DataSource } = require('typeorm');
 
-const Product = require('./models/product.entity');
+const Product = require('./product/entities/product.entity');
 
 const AppDataSource = new DataSource({
     type: 'mysql',

@@ -18,7 +18,8 @@ No futuro, será lançada uma versão utilizando **NestJS** e outros frameworks.
 
 - **Node.js**: >= 18 (atualmente usando 24.11.1 via nvm)
 - **Express**: ^5.2.1
-- Futuras bibliotecas serão adicionadas conforme o desenvolvimento (ex.: JWT, Winston, Jest, etc.)
+- **pino-http**: ^11.0.0
+- Futuras bibliotecas serão adicionadas conforme o desenvolvimento (ex.: JWT, Jest, etc.)
 
 ---
 
@@ -165,19 +166,19 @@ Funções e variáveis internas seguem **camelCase**, enquanto classes (quando h
 
 ```
 src/
-├── controllers/
-├── dtos/
+├── product/
+|   ├── dtos/
+|   ├── entities/
+|   └── validations/
 ├── errors/
 ├── middlewares/
-├── models/
 ├── swagger/
 |   └── docs
 ├── tests/
 ├── utils/
-├── validations/
+├── app.js
 ├── data-source.js
-├── index.js
-└── routes.js
+└── index.js
 .env
 Dockerfile
 package.json

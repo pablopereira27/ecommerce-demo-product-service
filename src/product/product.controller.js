@@ -1,11 +1,11 @@
 const { AppDataSource } = require('../data-source');
 const { MoreThanOrEqual, LessThanOrEqual } = require('typeorm');
 
-const Product = require('../models/product.entity');
-const CreateProductDto = require('../dtos/create-product.dto');
-const UpdateProductDto = require('../dtos/update-product.dto');
-const ProductListDto = require('../dtos/product-list.dto');
-const ProductDto = require('../dtos/product.dto');
+const Product = require('./entities/product.entity');
+const CreateProductDto = require('./dtos/create-product.dto');
+const UpdateProductDto = require('./dtos/update-product.dto');
+const ProductListDto = require('./dtos/product-list.dto');
+const ProductDto = require('./dtos/product.dto');
 const ValidationError = require('../errors/validation.error');
 
 async function getAllProducts(req, res) {

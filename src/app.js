@@ -6,7 +6,7 @@ const pino = require('pino-http');
 const { swaggerUi, swaggerSpec } = require('./swagger/swagger-config');
 const logger = require('./logger');
 const errorHandler = require('./middlewares/error-handler.middleware');
-const routes = require('./routes');
+const routes = require('./product/product.routes');
 
 const app = express();
 

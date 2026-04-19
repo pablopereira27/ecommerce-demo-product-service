@@ -15,15 +15,17 @@ const updateProductSchema = {
 function validate(dto, schema) {
     for (const [field, rules] of Object.entries(schema)) {
         const value = dto[field];
-        if (rules.required && (value === undefined || value === null)) {
+        if (rules.required && (value === undefined || value === null))
             throw new ValidationError(`${field} é obrigatório`);
-        }
-        if (rules.type === 'number' && isNaN(value)) {
+
+        if (!rules.required && (value === undefined || value === null))
+            continue;
+
+        if (rules.type === 'number' && isNaN(value))
             throw new ValidationError(`${field} deve ser um número`);
-        }
-        if (rules.type === 'string' && typeof value !== 'string') {
+
+        if (rules.type === 'string' && typeof value !== 'string')
             throw new ValidationError(`${field} deve ser uma string`);
-        }
     }
     return dto;
 }

@@ -59,10 +59,13 @@ async function createProduct(req, res) {
         res.status(201).json(newProduct);
     } catch (error) {
         if (error instanceof ValidationError) {
-            req.log.warn({ body: req.body }, 'Dados de produto inválidos');
+            req.log.warn(
+                { body: req.body },
+                error.message || 'Dados de produto inválidos'
+            );
             return res
                 .status(400)
-                .json({ error: 'Dados de produto inválidos' });
+                .json({ error: error.message || 'Dados de produto inválidos' });
         }
 
         next(error);
@@ -91,10 +94,14 @@ async function updateProduct(req, res) {
         res.status(200).json(product);
     } catch (error) {
         if (error instanceof ValidationError) {
-            req.log.warn({ body: req.body }, 'Dados de produto inválidos');
+            req.log.warn(
+                { body: req.body },
+                error.message || 'Dados de produto inválidos'
+            );
+
             return res
                 .status(400)
-                .json({ error: 'Dados de produto inválidos' });
+                .json({ error: error.message || 'Dados de produto inválidos' });
         }
 
         next(error);

@@ -21,8 +21,14 @@ function validate(dto, schema) {
         if (!rules.required && (value === undefined || value === null))
             continue;
 
-        if (rules.type === 'number' && isNaN(value))
-            throw new ValidationError(`${field} deve ser um número`);
+        if (rules.type === 'number') {
+            if (isNaN(value))
+                throw new ValidationError(`${field} deve ser um número`);
+            if (value <= 0)
+                throw new ValidationError(
+                    `${field} deve ser um número positivo`
+                );
+        }
 
         if (rules.type === 'string' && typeof value !== 'string')
             throw new ValidationError(`${field} deve ser uma string`);

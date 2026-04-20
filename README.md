@@ -112,7 +112,7 @@ Nesta etapa serão implementados mecanismos de **log estruturado** para aumentar
 </details>
 
 <details>
-    <summary>⬜ 7. Testes (Unitários e Integração)</summary>
+    <summary>✅ 7. Testes (Unitários e Integração)</summary>
 
 - Configuração do **Jest** como framework de testes
 - Testes **unitários** para controllers, services e validações

@@ -1,7 +1,7 @@
 // Configurações
 require('dotenv').config();
 const { AppDataSource } = require('./data-source');
-const app = require('./app');
+const createApp = require('./app');
 const logger = require('./logger');
 const registerProcessHandlers = require('./utils/process-handlers');
 
@@ -15,6 +15,7 @@ AppDataSource.initialize()
     .then(() => {
         logger.info('O banco de dados foi inicializado!');
 
+        const app = createApp(AppDataSource.manager);
         app.listen(port, () => {
             logger.info(
                 `Servidor em pleno funcionamento, rodando na porta ${port}.`

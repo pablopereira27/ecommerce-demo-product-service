@@ -1,5 +1,5 @@
 const Product = require('./entities/product.entity');
-const { MoreThanOrEqual, LessThanOrEqual } = require('typeorm');
+const { MoreThanOrEqual, LessThanOrEqual, Like } = require('typeorm');
 
 class ProductService {
     constructor(manager) {
@@ -13,7 +13,7 @@ class ProductService {
 
     async findAll(filters, page = 1, limit = 10) {
         const where = {};
-        if (filters.name) where.name = filters.name;
+        if (filters.name) where.name = Like(`%${filters.name}%`);
         if (filters.minPrice) where.price = MoreThanOrEqual(filters.minPrice);
         if (filters.maxPrice) where.price = LessThanOrEqual(filters.maxPrice);
         return this.repo.findAndCount({

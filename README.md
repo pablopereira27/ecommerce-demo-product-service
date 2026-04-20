@@ -17,9 +17,14 @@ No futuro, será lançada uma versão utilizando **NestJS** e outros frameworks.
 ## 🛠️ Tecnologias utilizadas
 
 - **Node.js**: >= 18 (atualmente usando 24.11.1 via nvm)
-- **Express**: ^5.2.1
-- **pino-http**: ^11.0.0
-- Futuras bibliotecas serão adicionadas conforme o desenvolvimento (ex.: JWT, Jest, etc.)
+- **Express**: ~5.2.1 — framework web minimalista
+- **TypeORM**: ~0.3.x — ORM para integração com MySQL
+- **MySQL**: 8.x — banco relacional dedicado ao serviço
+- **dotenv**: ~17.x — gerenciamento de variáveis de ambiente
+- **pino-http**: ~11.0.0 — logging estruturado em JSON
+- **Swagger UI Express**: ~5.x — documentação interativa da API
+
+Futuras bibliotecas serão adicionadas conforme o desenvolvimento (ex.: JWT, etc.)
 
 ---
 
@@ -86,21 +91,27 @@ Será integrada a documentação da API utilizando Swagger/OpenAPI.
 </details>
 
 <details>
-    <summary>⬜ 6. Observabilidade</summary>
+    <summary>✅ 6. Logs</summary>
 
-Serão implementados mecanismos de observabilidade para aumentar a confiabilidade do serviço.
+Nesta etapa serão implementados mecanismos de **log estruturado** para aumentar a confiabilidade do serviço.
 
-- Integração da biblioteca Pino para geração de logs estruturados em JSON
+- Integração da biblioteca **Pino** para geração de logs em JSON
 - Definição de níveis de severidade (`info`, `warn`, `error`, `fatal`)
-- Configuração de Prometheus para coleta de métricas (requisições, tempo de resposta, uso de recursos)
-- Integração com Loki para armazenamento e consulta de logs
-- Visualização e alertas via Grafana, permitindo monitoramento em tempo real e notificações em caso de falhas
-- Testes unitários e de integração para garantir qualidade antes da dockerização
 
 </details>
 
 <details>
-    <summary>⬜ 7. Dockerização</summary>
+    <summary>⬜ 7. Testes (Unitários e Integração)</summary>
+
+- Configuração do **Jest** como framework de testes
+- Testes **unitários** para controllers, services e validações
+- Testes **de integração** para endpoints REST (ex.: criar produto e validar com GET)
+- Uso de transações e rollback para manter banco limpo entre execuções
+
+</details>
+
+<details>
+    <summary>⬜ 8. Dockerização</summary>
 
 Será feita a dockerização do serviço para facilitar a execução em ambientes isolados.
 
@@ -112,7 +123,20 @@ Será feita a dockerização do serviço para facilitar a execução em ambiente
 </details>
 
 <details>
-    <summary>⬜ 8. Kubernetes</summary>
+    <summary>⬜ 9. Observabilidade (Logs + Métricas)</summary>
+
+Após a dockerização, serão adicionados mecanismos de **observabilidade completa** para acompanhar a saúde e performance do serviço.
+
+- Integração com **Loki** para armazenamento e consulta centralizada dos logs
+- Configuração do **Prometheus** para coleta de métricas (requisições, tempo de resposta, uso de recursos)
+- Integração com **Grafana** para dashboards e alertas
+- Definição de thresholds para alertas automáticos (ex.: latência > 500ms)
+- Visualização em tempo real e notificações em caso de falhas
+
+</details>
+
+<details>
+    <summary>⬜ 10. Kubernetes</summary>
 
 Será feita a orquestração dos containers em um cluster Kubernetes para garantir escalabilidade e alta disponibilidade.
 

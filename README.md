@@ -6,6 +6,9 @@
 ![MySQL](https://img.shields.io/badge/MySQL-8.x-blue?logo=mysql)
 ![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-lightgrey?logo=swagger)
 ![Pino](https://img.shields.io/badge/Pino-11.0.0-yellow?logo=javascript)
+![Jest](https://img.shields.io/badge/Jest-30.3.0-brightgreen?logo=jest)
+![Supertest](https://img.shields.io/badge/Supertest-7.2.2-lightblue)
+
 ## 📖 Proposta
 
 Este repositório faz parte de um projeto **demo de microserviços** para um e-commerce simples.  
@@ -29,6 +32,8 @@ No futuro, será lançada uma versão utilizando **NestJS** e outros frameworks.
 - **dotenv**: ~17.x — gerenciamento de variáveis de ambiente
 - **pino-http**: ~11.0.0 — logging estruturado em JSON
 - **Swagger UI Express**: ~5.x — documentação interativa da API
+- **Jest**: ^30.x — framework de testes unitários e integração
+- **Supertest**: ^7.2.x — testes de endpoints HTTP
 
 Futuras bibliotecas serão adicionadas conforme o desenvolvimento (ex.: JWT, etc.)
 
@@ -161,7 +166,7 @@ Será feita a orquestração dos containers em um cluster Kubernetes para garant
 
 Toda a documentação Swagger/OpenAPI está centralizada em **`src/swagger/docs/`**.
 
-- Cada módulo possui seus próprios arquivos de documentação (ex.: `productControllerDocs.js`, `productDtoDocs.js`).
+- Cada módulo possui seus próprios arquivos de documentação (ex.: `product-controller.docs.js`, `product.dto.docs.js`).
 - O Swagger é configurado para buscar automaticamente todos os arquivos e subpastas (`./src/swagger/docs/**/*.js`).
 - Isso mantém os controllers e DTOs limpos, enquanto a documentação fica organizada em um único lugar.
 
@@ -215,6 +220,45 @@ package.json
 README.md
 
 ```
+
+---
+
+## 🧪 Estratégia de Testes
+
+Este serviço possui dois níveis de testes: **unitários** e **de integração**.  
+Abaixo estão os cenários planejados para garantir cobertura completa do CRUD de produtos.
+
+<details>
+    <summary>Testes Unitários</summary>
+
+| Endpoint             | Cenário                           | Objetivo                              |
+| -------------------- | --------------------------------- | ------------------------------------- |
+| POST /products       | Criar produto válido              | Verificar retorno 201 e corpo correto |
+| POST /products       | Criar produto sem nome            | Retornar 400 com mensagem de erro     |
+| POST /products       | Criar produto com dados inválidos | Garantir que ValidationError gera 400 |
+| GET /products/:id    | Buscar produto inexistente        | Retornar 404                          |
+| PUT /products/:id    | Atualizar sem body                | Retornar 400                          |
+| PUT /products/:id    | Atualizar inexistente             | Retornar 404                          |
+| PUT /products/:id    | Atualizar com dados inválidos     | Retornar 400                          |
+| DELETE /products/:id | Excluir inexistente               | Retornar 404                          |
+| DELETE /products/:id | Excluir existente                 | Retornar 204                          |
+| GET /products        | Listar com filtros                | Garantir aplicação correta            |
+| GET /products        | Paginação                         | Retornar lista paginada com metadados |
+
+</details>
+
+<details>
+    <summary>Testes Unitários</summary>
+
+| Endpoint                   | Cenário                              | Objetivo                         |
+| -------------------------- | ------------------------------------ | -------------------------------- |
+| POST + GET /products       | Criar e buscar produto               | Garantir persistência            |
+| PUT + GET /products/:id    | Atualizar e verificar                | Confirmar alteração salva        |
+| DELETE + GET /products/:id | Excluir e verificar                  | Confirmar exclusão               |
+| GET /products              | Listar múltiplos produtos            | Validar paginação e filtros      |
+| CRUD completo              | Criar → Atualizar → Buscar → Excluir | Validar ciclo de vida do produto |
+
+</details>
 
 ---
 

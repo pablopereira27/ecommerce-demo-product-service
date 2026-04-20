@@ -1,5 +1,11 @@
 # Ecommerce Demo - Product Service
 
+![Node.js](https://img.shields.io/badge/Node.js-18%2B-green?logo=node.js)
+![Express](https://img.shields.io/badge/Express-5.2.1-blue?logo=express)
+![TypeORM](https://img.shields.io/badge/TypeORM-0.3.28-orange?logo=typeorm)
+![MySQL](https://img.shields.io/badge/MySQL-8.x-blue?logo=mysql)
+![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-lightgrey?logo=swagger)
+![Pino](https://img.shields.io/badge/Pino-11.0.0-yellow?logo=javascript)
 ## 📖 Proposta
 
 Este repositório faz parte de um projeto **demo de microserviços** para um e-commerce simples.  

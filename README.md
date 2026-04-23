@@ -8,6 +8,7 @@
 ![Pino](https://img.shields.io/badge/Pino-11.0.0-yellow?logo=javascript)
 ![Jest](https://img.shields.io/badge/Jest-30.3.0-brightgreen?logo=jest)
 ![Supertest](https://img.shields.io/badge/Supertest-7.2.2-lightblue)
+![JWT](https://img.shields.io/badge/JWT-Auth-red?logo=jsonwebtokens)
 ![Docker](https://img.shields.io/badge/docker-ready-blue?logo=docker)
 
 ## 📖 Proposta
@@ -35,6 +36,7 @@ No futuro, será lançada uma versão utilizando **NestJS** e outros frameworks.
 - **Swagger UI Express**: ~5.x — documentação interativa da API
 - **Jest**: ^30.x — framework de testes unitários e integração
 - **Supertest**: ^7.2.x — testes de endpoints HTTP
+- **JWT (jsonwebtoken)**: ~9.x — autenticação baseada em token
 
 Futuras bibliotecas serão adicionadas conforme o desenvolvimento.
 
@@ -304,3 +306,7 @@ Este projeto é uma **vitrine de código** para demonstrar:
 - Organização de projetos
 - Uso de Node.js + Express
 - Boas práticas de desenvolvimento
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.

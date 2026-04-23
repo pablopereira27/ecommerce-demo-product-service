@@ -122,7 +122,18 @@ Nesta etapa serão implementados mecanismos de **log estruturado** para aumentar
 </details>
 
 <details>
-    <summary>⬜ 8. Dockerização</summary>
+    <summary>⬜ 8. Autenticação via Token</summary>
+
+- Nesta etapa será feita a integração da autenticação no Product Service.
+- Receber tokens JWT emitidos pelo Auth Service
+- Criar middleware para validar o token em todas as rotas do CRUD
+- Ajustar testes unitários e de integração para incluir cenários autenticados e não autenticados
+- Garantir que apenas usuários válidos possam acessar as rotas de produtos
+
+</details>
+
+<details>
+    <summary>⬜ 9. Dockerização</summary>
 
 Será feita a dockerização do serviço para facilitar a execução em ambientes isolados.
 
@@ -134,7 +145,7 @@ Será feita a dockerização do serviço para facilitar a execução em ambiente
 </details>
 
 <details>
-    <summary>⬜ 9. Observabilidade (Logs + Métricas)</summary>
+    <summary>⬜ 10. Observabilidade (Logs + Métricas)</summary>
 
 Após a dockerização, serão adicionados mecanismos de **observabilidade completa** para acompanhar a saúde e performance do serviço.
 
@@ -147,7 +158,7 @@ Após a dockerização, serão adicionados mecanismos de **observabilidade compl
 </details>
 
 <details>
-    <summary>⬜ 10. Kubernetes</summary>
+    <summary>⬜ 11. Kubernetes</summary>
 
 Será feita a orquestração dos containers em um cluster Kubernetes para garantir escalabilidade e alta disponibilidade.
 

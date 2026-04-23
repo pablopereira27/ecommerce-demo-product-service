@@ -1,6 +1,6 @@
 module.exports = {
     testEnvironment: 'node',
-    setupFilesAfterEnv: ['./src/tests/setup.js'],
+    setupFilesAfterEnv: ['./tests/setup.js'],
     reporters: [
         'default',
         [

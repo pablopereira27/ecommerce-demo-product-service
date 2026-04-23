@@ -6,6 +6,8 @@ const pino = require('pino-http');
 const { swaggerUi, swaggerSpec } = require('./swagger/swagger-config');
 const logger = require('./logger');
 const errorHandler = require('./middlewares/error-handler.middleware');
+
+// Rotas
 const createProductRoutes = require('./product/product.routes');
 
 function createApp(manager) {

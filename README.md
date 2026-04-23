@@ -211,26 +211,45 @@ Funções e variáveis internas seguem **camelCase**, enquanto classes (quando h
 ### 📂 Estrutura de pastas
 
 ```
+scripts/
 src/
+├── errors/
+├── middlewares/
 ├── product/
 |   ├── dtos/
 |   ├── entities/
 |   └── validations/
-├── errors/
-├── middlewares/
 ├── swagger/
 |   └── docs
-├── tests/
 ├── utils/
 ├── app.js
 ├── data-source.js
 └── index.js
+tests/
 .env
 Dockerfile
 package.json
 README.md
 
 ```
+
+---
+
+## ⚙️ Ambiente de Testes
+
+- O projeto utiliza variáveis de ambiente definidas em arquivos `.env`.
+- Para testes, você pode criar um arquivo `.env.test` com valores específicos (ex.: banco de dados de teste, `JWT_SECRET=testsecret`).
+- Caso o `.env.test` não exista, o sistema pode carregar o `.env` padrão.
+- Exemplo de `.env.test`:
+    ```env
+    DB_HOST=localhost
+    DB_USER=test_user
+    DB_PASS=test_pass
+    DB_NAME=product_db_test
+    JWT_SECRET=testsecret
+    ```
+
+> 💡 Recomenda-se manter todas as variáveis necessárias também no .env.test, mesmo que com valores diferentes, para evitar falhas nos testes.
 
 ---
 
@@ -255,11 +274,14 @@ Abaixo estão os cenários planejados para garantir cobertura completa do CRUD d
 | DELETE /products/:id | Excluir existente                 | Retornar 204                          |
 | GET /products        | Listar com filtros                | Garantir aplicação correta            |
 | GET /products        | Paginação                         | Retornar lista paginada com metadados |
+| GET /products        | Token válido                      | Retornar 200 e permitir acesso        |
+| GET /products        | Token ausente                     | Retornar 401 com erro "Token missing" |
+| GET /products        | Token inválido                    | Retornar 401 com erro "Invalid token" |
 
 </details>
 
 <details>
-    <summary>Testes Unitários</summary>
+    <summary>Testes de Integração</summary>
 
 | Endpoint                   | Cenário                              | Objetivo                         |
 | -------------------------- | ------------------------------------ | -------------------------------- |

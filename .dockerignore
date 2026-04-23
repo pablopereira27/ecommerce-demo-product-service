@@ -1,0 +1,10 @@
+# Arquivos de ambiente reais
+.env
+.env.*
+
+# Node modules
+node_modules/
+
+# Testes e docs
+tests/
+README.md

@@ -8,6 +8,7 @@
 ![Pino](https://img.shields.io/badge/Pino-11.0.0-yellow?logo=javascript)
 ![Jest](https://img.shields.io/badge/Jest-30.3.0-brightgreen?logo=jest)
 ![Supertest](https://img.shields.io/badge/Supertest-7.2.2-lightblue)
+![Docker](https://img.shields.io/badge/docker-ready-blue?logo=docker)
 
 ## 📖 Proposta
 
@@ -35,7 +36,7 @@ No futuro, será lançada uma versão utilizando **NestJS** e outros frameworks.
 - **Jest**: ^30.x — framework de testes unitários e integração
 - **Supertest**: ^7.2.x — testes de endpoints HTTP
 
-Futuras bibliotecas serão adicionadas conforme o desenvolvimento (ex.: JWT, etc.)
+Futuras bibliotecas serão adicionadas conforme o desenvolvimento.
 
 ---
 
@@ -133,14 +134,14 @@ Nesta etapa serão implementados mecanismos de **log estruturado** para aumentar
 </details>
 
 <details>
-    <summary>⬜ 9. Dockerização</summary>
+    <summary>✅ 9. Dockerização</summary>
 
 Será feita a dockerização do serviço para facilitar a execução em ambientes isolados.
 
 - Criação de `Dockerfile` para empacotar o serviço
 - Configuração de `docker-compose` para rodar localmente com banco de dados e dependências
-- Preparação para futura orquestração em ambientes maiores
-- Testes de execução em container para validar compatibilidade
+- Estrutura preparada para futura orquestração em ambientes maiores, com possibilidade de integração de ferramentas de observabilidade e mensageria
+- Testes manuais de execução em container para validar compatibilidade
 
 </details>
 

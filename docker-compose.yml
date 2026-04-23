@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+    product-service:
+        build: .
+        ports:
+            - '${APP_PORT}:${APP_PORT}'
+        env_file:
+            - .env
+        volumes:
+            - .:/app
+            - /app/node_modules
+            - ./ci-reports:/app/ci-reports

@@ -1,8 +1,14 @@
-node_modules/
-ci-reports/
-
+# Arquivos de ambiente reais
 .env
 .env.test
 .env.local
 .env.development
 .env.production
+
+# Arquivos auto-gerados
+node_modules/
+ci-reports/
+
+# Testes e docs
+tests/
+README.md

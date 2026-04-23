@@ -122,7 +122,7 @@ Nesta etapa serão implementados mecanismos de **log estruturado** para aumentar
 </details>
 
 <details>
-    <summary>⬜ 8. Autenticação via Token</summary>
+    <summary>✅ 8. Autenticação via Token</summary>
 
 - Nesta etapa será feita a integração da autenticação no Product Service.
 - Receber tokens JWT emitidos pelo Auth Service

@@ -14,14 +14,30 @@
 ## 📖 Proposta
 
 Este repositório faz parte de um projeto **demo de microserviços** para um e-commerce simples.  
-A arquitetura é composta por 3 serviços independentes:
-
-- [Auth Service](https://github.com/pablopereira27/ecommerce-demo-auth-service)
-- [Product Service](https://github.com/pablopereira27/ecommerce-demo-product-service) ← este repositório
-- [Order Service](https://github.com/pablopereira27/ecommerce-demo-order-service)
+A arquitetura é composta por 3 serviços independentes e 1 repositório com a infraestrutura compartilhada.
 
 O objetivo é ser **simples e leve**, mostrando boas práticas de microserviços.  
 No futuro, será lançada uma versão utilizando **NestJS** e outros frameworks.
+
+### Auth Service
+
+**Repositório:** ~~ecommerce-demo-auth-service~~ (Projeto pendente)  
+Responsável pela autenticação e gestão de usuários.
+
+### Product Service
+
+**Repositório:** <ins>Este repositório</ins>  
+Responsável pelo catálogo de produtos.
+
+### Order Service
+
+**Repositório:** ~~ecommerce-demo-order-service~~ (Projeto pendente)  
+Responsável pelo processamento e gestão de pedidos.
+
+### Infra
+
+**Repositório:** [ecommerce-demo-infra](https://github.com/pablopereira27/ecommerce-demo-infra)  
+Responsável por **“hostiar” containers de serviços de infraestrutura** como RabbitMQ, monitoramento e relatórios.
 
 ---
 

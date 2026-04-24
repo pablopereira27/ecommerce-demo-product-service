@@ -148,7 +148,28 @@ Será feita a dockerização do serviço para facilitar a execução em ambiente
 </details>
 
 <details>
-    <summary>⬜ 10. Observabilidade (Logs + Métricas)</summary>
+    <summary>⬜ 10. Mensageria com RabbitMQ</summary>
+
+- Configuração de RabbitMQ no `docker-compose`
+- Product Service como **consumer**: recebe eventos externos (ex.: `ProductLocked`, `ProductUnlocked`, `StockDepleted`, `StockRestored`) e atualiza o estado do produto
+- Contrato de evento demonstrado em TypeScript (recebido em JSON na prática):
+    ```ts
+    interface ProductEvent {
+        event:
+            | 'ProductLocked'
+            | 'ProductUnlocked'
+            | 'StockDepleted'
+            | 'StockRestored';
+        productId: string;
+        timestamp: string; // ISO 8601
+        reason?: string; // usado apenas em bloqueios administrativos (Ex: `ProductLocked`, `ProductUnlocked`)
+    }
+    ```
+
+</details>
+
+<details>
+    <summary>⬜ 11. Observabilidade (Logs + Métricas)</summary>
 
 Após a dockerização, serão adicionados mecanismos de **observabilidade completa** para acompanhar a saúde e performance do serviço.
 
@@ -161,7 +182,7 @@ Após a dockerização, serão adicionados mecanismos de **observabilidade compl
 </details>
 
 <details>
-    <summary>⬜ 11. Kubernetes</summary>
+    <summary>⬜ 12. Kubernetes</summary>
 
 Será feita a orquestração dos containers em um cluster Kubernetes para garantir escalabilidade e alta disponibilidade.
 
